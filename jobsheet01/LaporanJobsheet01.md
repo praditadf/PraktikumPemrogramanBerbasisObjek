@@ -145,20 +145,20 @@ The solution is implemented in BikeDemo.java, and below is screenshot of the res
 1. Jelaskan perbedaan antara object dengan class!
 
 ```
-* Object : 
-* Class  : 
+* Object :
+* Class  :
 ```
 
 2. Jelaskan alasan gear dan brand dapat menjadi atribut dari object Bike!
 
 ```
-Gear dan brand 
+Gear dan brand
 ```
 
 3. Sebutkan salah satu kelebihan utama dari pemrograman berorientasi objek dibandingkan dengan pemrograman prosedural!
 
 ```
-Pemograman berorientasi objek 
+Pemograman berorientasi objek
 ```
 
 4. Apakah diperbolehkan melakukan pendefinisian dua buah atribut dalam satu baris kode seperti “public String nama, alamat;”?
@@ -170,8 +170,233 @@ Pendefinisian dua buah atribut dalam saru baris kode
 5. Pada class RoadBike, jelaskan alasan atribut brand, speed, dan gear tidak lagi ditulis di dalam class tersebut!
 
 ```
-Atribut brand, speed, dan gear tidak lagi ditulis di dalam class RoadBike 
+Atribut brand, speed, dan gear tidak lagi ditulis di dalam class RoadBike
 ```
 
 # Praktikum
 
+
+
+**Class Hp**
+
+```
+package jobsheet01;
+
+public class Hp {
+    private String brand;
+    private int storage;
+    private int ram;
+    private String processor;
+
+    void setBrand(String brandName) {
+        brand = brandName;
+    }
+
+    void setStorage(int totalStorage) {
+        storage = totalStorage;
+    }
+
+    void setRam(int totalRam) {
+        ram = totalRam;
+    }
+
+    void setProcessor(String processorName) {
+        processor = processorName;
+    }
+
+    void printInfo() {
+        System.out.println("Brand : " + brand);
+        System.out.println("Storage : " + storage + " GB");
+        System.out.println("Ram : " + ram + " GB");
+        System.out.println("Processor : " + processor);
+    }
+}
+```
+
+**Class Kacamata**
+
+```
+package jobsheet01;
+
+public class Kacamata {
+    private String brand, color;
+    private int size;
+
+    void setBrand(String brandName) {
+        brand = brandName;
+    }
+
+    void setSize(int sizeKacamata) {
+        size = sizeKacamata;
+    }
+
+    void setColor(String colorKacamata) {
+        color = colorKacamata;
+    }
+
+    void printInfo() {
+        System.out.println("Brand : " + brand);
+        System.out.println("Size : " + size);
+        System.out.println("Color : " + color);
+    }
+}
+```
+
+**Class Laptop**
+
+```
+package jobsheet01;
+
+public class Laptop {
+    private String brand;
+    private int storage;
+    private int ram;
+    private String cpu;
+
+    void setBrand(String brandName) {
+        brand = brandName;
+    }
+
+    void setStorage(int totalStorage) {
+        storage = totalStorage;
+    }
+
+    void setRam(int totalRam) {
+        ram = totalRam;
+    }
+
+    void setCpu(String cpuName) {
+        cpu = cpuName;
+    }
+
+    void printInfo() {
+        System.out.println("Brand : " + brand);
+        System.out.println("Storage : " + storage + " GB");
+        System.out.println("RAM : " + ram + " GB");
+        System.out.println("CPU : " + cpu);
+    }
+}
+```
+
+**Class LaptopGaming**
+
+```
+package jobsheet01;
+
+public class LaptopGaming extends Laptop {
+    private String gpu;
+
+    void setGpu(String gpuName) {
+        gpu = gpuName;
+    }
+
+    @Override
+    void printInfo() {
+        super.printInfo();
+        System.out.println("GPU : " + gpu);
+    }
+
+}
+```
+
+**Class Shoes**
+
+```
+package jobsheet01;
+
+public class Shoes {
+    private String brand, color;
+    private int size;
+
+    void setBrand(String brandName) {
+        brand = brandName;
+    }
+
+    void setSize(int sizeShoes) {
+        size = sizeShoes;
+    }
+
+    void setColor(String colorShoes) {
+        color = colorShoes;
+    }
+
+    void printInfo() {
+        System.out.println("Brand : " + brand);
+        System.out.println("Size : " + size);
+        System.out.println("Color : " + color);
+    }
+}
+```
+
+**Class SepatuRoda**
+
+```
+package jobsheet01;
+
+public class SepatuRoda extends Shoes {
+    private int totalTire;
+
+    void setTotalTire(int tire){
+        totalTire = tire;
+    }
+
+    @Override
+    void printInfo() {
+        super.printInfo();
+        System.out.println("Shoes Type : Sepatu Roda");
+        System.out.println("Total Tire : " + totalTire);
+    }
+}
+```
+
+**Class Demo**
+
+```
+package jobsheet01;
+
+public class Demo {
+    public static void main(String[] args) {
+        Hp hp1 = new Hp();
+        Kacamata kacamata1 = new Kacamata();
+        Laptop laptop1 = new Laptop();
+        LaptopGaming laptopGaming1 = new LaptopGaming();
+        Shoes shoes1 = new Shoes();
+        SepatuRoda sepatuRoda1 = new SepatuRoda();
+
+        hp1.setBrand("Xiaomi Redmi Note 13");
+        hp1.setStorage(128);
+        hp1.setRam(8);
+        hp1.setProcessor("Snapdragon 685 Octa-core Max 2.8 GHz");
+        hp1.printInfo();
+
+        kacamata1.setBrand("Jisoo 023");
+        kacamata1.setColor("Black");
+        kacamata1.setSize(50);
+        kacamata1.printInfo();
+
+        laptop1.setBrand("Acer Nitro v15");
+        laptop1.setStorage(512);
+        laptop1.setRam(16);
+        laptop1.setCpu("Intel Core i5-13420H");
+        laptop1.printInfo();
+
+        laptopGaming1.setBrand("ROG Zephyrus G14");
+        laptopGaming1.setStorage(2048);
+        laptopGaming1.setRam(32);
+        laptopGaming1.setCpu("Intel Core Ultra 9 386H");
+        laptopGaming1.setGpu("NVIDIA GeForce RTX 5080 Ti");
+        laptopGaming1.printInfo();
+
+        shoes1.setBrand("Nike");
+        shoes1.setSize(39);
+        shoes1.setColor("Black");
+        shoes1.printInfo();
+
+        sepatuRoda1.setBrand("Rollerblade");
+        sepatuRoda1.setSize(40);
+        sepatuRoda1.setColor("White");
+        sepatuRoda1.setTotalTire(8);
+        sepatuRoda1.printInfo();
+    }
+}
+```
