@@ -3,7 +3,7 @@
 | NIM        | 254107020130                                                                       |
 | Nama       | Achmad Pradita Dwi Firmansyah                                                      |
 | Kelas      | TI - 2G                                                                            |
-| Repository | [link] (https://github.com/praditadf/PraktikumPemrogramanBerbasisObjek/jobsheet01) |
+| Repository | [link] (https://github.com/praditadf/PraktikumPemrogramanBerbasisObjek/tree/main/jobsheet01) |
 
 # 3. Percobaan
 
