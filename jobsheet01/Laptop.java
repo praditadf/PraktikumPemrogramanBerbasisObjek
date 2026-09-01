@@ -22,6 +22,14 @@ public class Laptop {
         cpu = cpuName;
     }
 
+    void shutdown() {
+        System.out.println("Laptop sudah dimatikan");
+    }
+
+    void turnOn() {
+        System.out.println("Laptop sudah dinyalakan");
+    }
+
     void printInfo() {
         System.out.println("Brand : " + brand);
         System.out.println("Storage : " + storage + " GB");

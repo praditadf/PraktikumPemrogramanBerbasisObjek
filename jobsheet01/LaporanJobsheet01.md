@@ -5,9 +5,9 @@
 | Kelas      | TI - 2G                                                                            |
 | Repository | [link] (https://github.com/praditadf/PraktikumPemrogramanBerbasisObjek/jobsheet01) |
 
-# 3. Percobaan
+# Percobaan
 
-## 3.1 Percobaan 1
+## Percobaan 1
 
 **Class Bike**
 
@@ -78,11 +78,9 @@ public class BikeDemo {
 }
 ```
 
-The solution is implemented in BikeDemo.java, and below is screenshot of the result.
-
 ![Screenshot](img/img1.png)
 
-## 3.2 Percobaan 2
+## Percobaan 2
 
 **Class RoadBike**
 
@@ -136,8 +134,6 @@ public class BikeDemo {
 }
 ```
 
-The solution is implemented in BikeDemo.java, and below is screenshot of the result.
-
 ![Screenshot](img/img2.png)
 
 **Pertanyaan**
@@ -145,37 +141,42 @@ The solution is implemented in BikeDemo.java, and below is screenshot of the res
 1. Jelaskan perbedaan antara object dengan class!
 
 ```
-* Object :
-* Class  :
+* Object : Masih berupa rancangan/ template/ desain/ blueprint
+* Class  : Objek nyata yang sudah dibentuk dari suatu class
 ```
 
 2. Jelaskan alasan gear dan brand dapat menjadi atribut dari object Bike!
 
 ```
-Gear dan brand
+Gear dan brand menjadi atribut dari object Bike karena gear dan brand merupakan state yang dimiliki oleh sepeda.
 ```
 
 3. Sebutkan salah satu kelebihan utama dari pemrograman berorientasi objek dibandingkan dengan pemrograman prosedural!
 
 ```
-Pemograman berorientasi objek
+Pemograman berorientasi objek lebih efisien karena hanya perlu membuat objek saja tidak perlu berulang ulang membuat variabel jika terdapat objek yang sama.
 ```
 
 4. Apakah diperbolehkan melakukan pendefinisian dua buah atribut dalam satu baris kode seperti “public String nama, alamat;”?
 
 ```
-Pendefinisian dua buah atribut dalam saru baris kode
+Pendefinisian dua buah atribut dalam saru baris kode diperbolehkan jika kedua atribut tersebut memiliki tipe data yang sama
 ```
 
 5. Pada class RoadBike, jelaskan alasan atribut brand, speed, dan gear tidak lagi ditulis di dalam class tersebut!
 
 ```
-Atribut brand, speed, dan gear tidak lagi ditulis di dalam class RoadBike
+Atribut brand, speed, dan gear tidak lagi ditulis di dalam class RoadBike karena class RoadBike merupakan turunan dari class bike melalui konsep pewarisan dimana atribut dan method milik class bike akan otomatis diturunkan ke class RoadBike.
 ```
 
 # Praktikum
 
+*4 Object*
 
+![Screenshot](img/img3.jpg)
+![Screenshot](img/img4.jpg)
+![Screenshot](img/img5.jpg)
+![Screenshot](img/img6.jpg)
 
 **Class Hp**
 
@@ -267,6 +268,14 @@ public class Laptop {
 
     void setCpu(String cpuName) {
         cpu = cpuName;
+    }
+
+    void shutdown() {
+        System.out.println("Laptop sudah dimatikan");
+    }
+
+    void turnOn() {
+        System.out.println("Laptop sudah dinyalakan");
     }
 
     void printInfo() {
@@ -378,6 +387,8 @@ public class Demo {
         laptop1.setStorage(512);
         laptop1.setRam(16);
         laptop1.setCpu("Intel Core i5-13420H");
+        laptop1.turnOn();
+        laptop1.shutdown();
         laptop1.printInfo();
 
         laptopGaming1.setBrand("ROG Zephyrus G14");
@@ -385,6 +396,8 @@ public class Demo {
         laptopGaming1.setRam(32);
         laptopGaming1.setCpu("Intel Core Ultra 9 386H");
         laptopGaming1.setGpu("NVIDIA GeForce RTX 5080 Ti");
+        laptopGaming1.turnOn();
+        laptopGaming1.shutdown();
         laptopGaming1.printInfo();
 
         shoes1.setBrand("Nike");
@@ -399,4 +412,39 @@ public class Demo {
         sepatuRoda1.printInfo();
     }
 }
+```
+
+_Hasil Run Terminal_
+
+```
+PS C:\PENYIMPANAN\Documents\G\PraktikumPemrogramanBerbasisObjek>  & 'C:\Program Files\Java\jdk-24\bin\java.exe' '-XX:+ShowCodeDetailsInExceptionMessages' '-cp' 'C:\Users\ACER\AppData\Roaming\Code\User\workspaceStorage\c74791496fe7ac354406e1f4ed81a00f\redhat.java\jdt_ws\PraktikumPemrogramanBerbasisObjek_e6355637\bin' 'jobsheet01.Demo'
+Brand : Xiaomi Redmi Note 13
+Storage : 128 GB
+Ram : 8 GB
+Processor : Snapdragon 685 Octa-core Max 2.8 GHz
+Brand : Jisoo 023
+Size : 50
+Color : Black
+Laptop sudah dinyalakan
+Laptop sudah dimatikan
+Brand : Acer Nitro v15
+Storage : 512 GB
+RAM : 16 GB
+CPU : Intel Core i5-13420H
+Laptop sudah dinyalakan
+Laptop sudah dimatikan
+Brand : ROG Zephyrus G14
+Storage : 2048 GB
+RAM : 32 GB
+CPU : Intel Core Ultra 9 386H
+GPU : NVIDIA GeForce RTX 5080 Ti
+Brand : Nike
+Size : 39
+Color : Black
+Brand : Rollerblade
+Size : 40
+Color : White
+Shoes Type : Sepatu Roda
+Total Tire : 8
+PS C:\PENYIMPANAN\Documents\G\PraktikumPemrogramanBerbasisObjek>
 ```

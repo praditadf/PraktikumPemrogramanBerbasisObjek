@@ -24,6 +24,8 @@ public class Demo {
         laptop1.setStorage(512);
         laptop1.setRam(16);
         laptop1.setCpu("Intel Core i5-13420H");
+        laptop1.turnOn();
+        laptop1.shutdown();
         laptop1.printInfo();
 
         laptopGaming1.setBrand("ROG Zephyrus G14");
@@ -31,6 +33,8 @@ public class Demo {
         laptopGaming1.setRam(32);
         laptopGaming1.setCpu("Intel Core Ultra 9 386H");
         laptopGaming1.setGpu("NVIDIA GeForce RTX 5080 Ti");
+        laptopGaming1.turnOn();
+        laptopGaming1.shutdown();
         laptopGaming1.printInfo();
 
         shoes1.setBrand("Nike");
