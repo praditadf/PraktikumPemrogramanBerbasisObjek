@@ -16,10 +16,10 @@ package jobsheet03.MotorEncapsulation;
 
 public class Motor {
     public int kecepatan = 0;
-    public boolean kontanOn = false;
+    public boolean kontakOn = false;
 
     public void printStatus() {
-        if (kontanOn == true) {
+        if (kontakOn == true) {
             System.out.println("Kontak On");
         } else {
             System.out.println("Kontak Off");
@@ -67,19 +67,19 @@ package jobsheet03.MotorEncapsulation;
 
 public class Motor {
     private int kecepatan = 0;
-    private boolean kontanOn = false;
+    private boolean kontakOn = false;
 
     public void nyalakanMesin() {
-        kontanOn = true;
+        kontakOn = true;
     }
 
     public void matikanMesin() {
-        kontanOn = false;
+        kontakOn = false;
         kecepatan = 0;
     }
 
     public void tambahKecepatan() {
-        if (kontanOn == true) {
+        if (kontakOn == true) {
             kecepatan += 5;
         } else {
             System.out.println("Kecepatan tidak bisa bertambah karena Mesin Off! \n");
@@ -87,7 +87,7 @@ public class Motor {
     }
 
     public void kurangiKecepatan() {
-        if (kontanOn == true) {
+        if (kontakOn == true) {
             kecepatan -= 5;
         } else {
             System.out.println("Kecepatan tidak bisa berkurang karena Mesin Off! \n");
@@ -95,7 +95,7 @@ public class Motor {
     }
 
     public void printStatus() {
-        if (kontanOn == true) {
+        if (kontakOn == true) {
             System.out.println("Kontak On");
         } else {
             System.out.println("Kontak Off");
@@ -168,19 +168,29 @@ PS C:\PENYIMPANAN\Documents\G\PraktikumPemrogramanBerbasisObjek>
 1. Pada class TestMobil, saat kita menambah kecepatan untuk pertama kalinya, mengapa muncul peringatan “Kecepatan tidak bisa bertambah karena Mesin Off!”?
 
 ```
-
+Karena mesin masih belum dinyalakan melalui method nyalakanMesin, sehingga kontakOn masih dalam keadaan false dan ketika ditambah kecepatan akan muncul “Kecepatan tidak bisa bertambah karena Mesin Off!”
 ```
 
 2. Mengapa atribut kecepatan dan kontakOn diset private?
 
 ```
-
+Atribut kecepatan dan kotakOn diset private agar nilai dari atribut tersebut tidak bisa diubah dari luar class.
 ```
 
 3. Ubah class Motor sehingga kecepatan maksimalnya adalah 100!
 
 ```
-
+    public void tambahKecepatan() {
+        if (kontakOn == true) {
+            if (kecepatan + 5 > 100) {
+                kecepatan = 100;
+            }else {
+                kecepatan += 5;
+            }
+        } else {
+            System.out.println("Kecepatan tidak bisa bertambah karena Mesin Off! \n");
+        }
+    }
 ```
 
 ## Percobaan 3 - Getter dan Setter
@@ -348,7 +358,7 @@ Getter adalah public method dan memiliki tipe data return, yang berfungsi untuk 
 2. Apa kegunaan dari method getSimpanan()?
 
 ```
-
+Kegunaan dari method getSimpanan() untuk menampilkan nilai simpanan.
 ```
 
 3. Method apa yang digunakan untuk menambah saldo?
@@ -360,7 +370,7 @@ Method yang digunakan untuk menambah saldo adalah method setor
 4. Apa yang dimaksud konstruktor?
 
 ```
-
+Konstuktor merupakan method istimewa yang digunakan ketika membuat objek sehingga bisa memasukkan nilai atribut bersamaan dengan pembuatan objek.
 ```
 
 5. Sebutkan aturan dalam membuat konstruktor?
@@ -380,19 +390,19 @@ Di java kita dapat memiliki konstruktor dengan modifier private, protected, publ
 7. Kapan menggunakan konstruktor dengan passing parameter?
 
 ```
-
+Ketika objek membutuhkan nilai yang spesifik setiap kali objek itu dibuat.
 ```
 
 8. Apa perbedaan inisialisasi atribut dan instansiasi atribut?
 
 ```
-
+Inisialisasi yaitu pemberian nilai awal pada atribut, sedangkan instansiasi adalah proses saat atribut tersebut mendapatkan alokasi memori.
 ```
 
 9. Apa perbedaan inisialisasi method dan instansiasi method?
 
 ```
-
+Inisialisasi adalah proses ketika method tersebut dibuat sedangkan instansiasi method adalah pemanggilan method tersebut.
 ```
 
 # Tugas
@@ -695,7 +705,11 @@ public class Tiket {
 
     Tiket(String judulFilm, double hargaDasar) {
         this.judulFilm = judulFilm;
-        this.hargaDasar = hargaDasar;
+        if (hargaDasar < 0) {
+            this.hargaDasar = 35000;
+        }else {
+            this.hargaDasar = hargaDasar;
+        }
         statusPembayaran = false;
     }
 
@@ -704,11 +718,7 @@ public class Tiket {
     }
 
     public double getHargaDasar() {
-        if (hargaDasar < 0) {
-            return hargaDasar = 35000;
-        } else {
-            return hargaDasar;
-        }
+        return hargaDasar;
     }
 
     public boolean isStatusPembayaran() {
@@ -716,7 +726,7 @@ public class Tiket {
     }
 
     public void lakukanPembayaran() {
-        statusPembayaran = false;
+        statusPembayaran = true;
     }
 }
 ```
@@ -749,6 +759,6 @@ Harga Tiket: 35000.0
 Status Lunas? false
 
 Memproses pembayaran...
-Status Lunas Terbaru? false
-PS C:\PENYIMPANAN\Documents\G\PraktikumPemrogramanBerbasisObjek>
+Status Lunas Terbaru? true
+PS C:\PENYIMPANAN\Documents\G\PraktikumPemrogramanBerbasisObjek> 
 ```
