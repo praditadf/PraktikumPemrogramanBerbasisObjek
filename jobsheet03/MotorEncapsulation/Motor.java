@@ -2,19 +2,19 @@ package jobsheet03.MotorEncapsulation;
 
 public class Motor {
     private int kecepatan = 0;
-    private boolean kontanOn = false;
+    private boolean kontakOn = false;
 
     public void nyalakanMesin() {
-        kontanOn = true;
+        kontakOn = true;
     }
 
     public void matikanMesin() {
-        kontanOn = false;
+        kontakOn = false;
         kecepatan = 0;
     }
 
     public void tambahKecepatan() {
-        if (kontanOn == true) {
+        if (kontakOn == true) {
             kecepatan += 5;
         } else {
             System.out.println("Kecepatan tidak bisa bertambah karena Mesin Off! \n");
@@ -22,7 +22,7 @@ public class Motor {
     }
 
     public void kurangiKecepatan() {
-        if (kontanOn == true) {
+        if (kontakOn == true) {
             kecepatan -= 5;
         } else {
             System.out.println("Kecepatan tidak bisa berkurang karena Mesin Off! \n");
@@ -30,7 +30,7 @@ public class Motor {
     }
 
     public void printStatus() {
-        if (kontanOn == true) {
+        if (kontakOn == true) {
             System.out.println("Kontak On");
         } else {
             System.out.println("Kontak Off");
