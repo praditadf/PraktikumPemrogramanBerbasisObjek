@@ -7,7 +7,11 @@ public class Tiket {
 
     Tiket(String judulFilm, double hargaDasar) {
         this.judulFilm = judulFilm;
-        this.hargaDasar = hargaDasar;
+        if (hargaDasar < 0) {
+            this.hargaDasar = 35000;
+        }else {
+            this.hargaDasar = hargaDasar;
+        }
         statusPembayaran = false;
     }
 
@@ -16,11 +20,7 @@ public class Tiket {
     }
 
     public double getHargaDasar() {
-        if (hargaDasar < 0) {
-            return hargaDasar = 35000;
-        } else {
-            return hargaDasar;
-        }
+        return hargaDasar;
     }
 
     public boolean isStatusPembayaran() {
@@ -28,6 +28,6 @@ public class Tiket {
     }
 
     public void lakukanPembayaran() {
-        statusPembayaran = false;
+        statusPembayaran = true;
     }
 }
