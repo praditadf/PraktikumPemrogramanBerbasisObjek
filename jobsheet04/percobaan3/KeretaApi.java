@@ -12,7 +12,7 @@ public class KeretaApi {
         this.masinis = masinis;
     }
 
-    public KeretaApi(String nama, String Kelas, Pegawai masinis, Pegawai asisten) {
+    public KeretaApi(String nama, String kelas, Pegawai masinis, Pegawai asisten) {
         this.nama = nama;
         this.kelas = kelas;
         this.masinis = masinis;
