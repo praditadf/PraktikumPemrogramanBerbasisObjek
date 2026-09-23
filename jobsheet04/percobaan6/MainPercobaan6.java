@@ -2,8 +2,8 @@ package jobsheet04.percobaan6;
 
 public class MainPercobaan6 {
     public static void main(String[] args) {
-        Laptop laptop = new Laptop("Thinkpad");
         Printer printer = new Printer("Epson L3110");
-        laptop.cetakDokumen(printer, "Laporan.pdf");
+        Laptop laptop = new Laptop("Thinkpad", printer);
+        laptop.cetakDokumen("Laporan.pdf");
     }
 }
