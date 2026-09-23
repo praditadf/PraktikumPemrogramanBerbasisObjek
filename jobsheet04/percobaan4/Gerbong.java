@@ -17,10 +17,12 @@ public class Gerbong {
     }
 
     public void setPenumpang(Penumpang penumpang, int nomor) {
-        if (this.arrayKursi[nomor - 1].getPenumpang() == null) {
-            this.arrayKursi[nomor - 1].setPenumpang(penumpang);
-        } else {
+        if (nomor < 1 || nomor > arrayKursi.length) {
+            System.out.println("Kursi tidak tersedia.");
+        }else if (arrayKursi[nomor - 1].getPenumpang() != null) {
             System.out.println("Kursi sudah ada penumpang lain.\n");
+        } else {
+            arrayKursi[nomor - 1].setPenumpang(penumpang);
         }
     }
 
