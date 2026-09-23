@@ -157,14 +157,14 @@ Untuk memanggil method info dari class Processor lewat class Laptop
 5. Pada Langkah 8, objek p dibuat lebih dulu baru diberikan ke constructor Laptop. Pada Langkah 10, objek Processor dibuat langsung di dalam argumen constructor Laptop (tanpa variabel p). Apakah keduanya menghasilkan output yang berbeda? Mengapa?
 
 ```
-Sama
+Sama, Karena pada Langkah 8 objek Processor dibuat terlebih dahulu dan diberikan melalui variabel p, sedangkan pada Langkah 10 objek Processor dibuat langsung sebagai lalu dimasukkan ke constructor Laptop.
 ```
 
 6. Secara kode, apakah relasi Laptop-Processor pada percobaan ini termasuk Aggregation atau Composition? Tunjukkan baris kode yang menjadi bukti jawabanmu.
 
 ```
-Agregation
-
+Agregation, karena objek Processor dibuat di Main bukan di Laptop
+Processor p = new Processor("Intel i5", 3);
 ```
 
 7. Andaikan constructor Laptop diubah menjadi seperti berikut, sehingga Processor dibuat sendiri di dalam Laptop, bukan diterima sebagai parameter:
@@ -175,7 +175,7 @@ Agregation
    Apakah relasi Laptop-Processor pada versi ini masih Aggregation? Jelaskan alasannya (jawaban ini akan kita buktikan sendiri lewat kode pada Percobaan 5).
 
 ```
-Composition
+Composition, karena Processor sekarang dibuat langsung oleh Laptop 
 ```
 
 ## Percobaan 2
@@ -835,8 +835,8 @@ Array dipilih ketika banyak objek yang perannya sama, sedangkan atribut bernama 
 7. Terapkan kriteria kode (siapa yang memanggil new) pada dua relasi has-a di Percobaan ini: GerbongKursi dan Kursi-Penumpang. Manakah yang Aggregation dan manakah yang Composition? Tunjukkan baris kode yang menjadi bukti untuk masing-masing.
 
 ```
-Aggregation: Kursi-Penumpang, karena penumpang hanya di set melalui method setPenumpang kursi tidak terdapat pemanggilan new Penumpang
-Composition: GerbongKursi, karena di dalam class Gerbong terdapat pembuatan array kursi 
+Aggregation: Kursi-Penumpang, karena objek Penumpang dibuat dari luar class Kursi dan kemudian diberikan melalui setter
+Composition: GerbongKursi, karena di dalam class Gerbong terdapat pembuatan array kursi sendiri
 ```
 
 ## Percobaan 5
