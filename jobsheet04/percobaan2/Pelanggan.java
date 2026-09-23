@@ -39,7 +39,7 @@ public class Pelanggan {
         this.hari = hari;
     }
 
-    public int gerHari() {
+    public int getHari() {
         return hari;
     }
 
