@@ -144,7 +144,7 @@ Method getter Untuk mengakses nilai dari suati atribut yang private sedangkan se
 3. Perhatikan class Laptop, di antara 2 atribut yang dimiliki (merk dan proc), atribut manakah yang ertipe object? Baris kode manakah yang menunjukkan bahwa class Laptop memiliki relasi dengan class Processor?
 
 ```
-Atribut yang bertipe object adalah Proc dan baris yang menunjukkan relasi Laptop ke Processor adalah 
+Atribut yang bertipe object adalah Proc dan baris yang menunjukkan relasi Laptop ke Processor adalah
 private Processor proc;
 ```
 
@@ -175,7 +175,7 @@ Processor p = new Processor("Intel i5", 3);
    Apakah relasi Laptop-Processor pada versi ini masih Aggregation? Jelaskan alasannya (jawaban ini akan kita buktikan sendiri lewat kode pada Percobaan 5).
 
 ```
-Composition, karena Processor sekarang dibuat langsung oleh Laptop 
+Composition, karena Processor sekarang dibuat langsung oleh Laptop
 ```
 
 ## Percobaan 2
@@ -363,7 +363,7 @@ Untuk menset mobil dan sopir yang digunakan oleh pelanggan p
 5. Untuk apakah proses p.hitungBiayaTotal()?
 
 ```
-Untuk menghitung total biaya sewa 
+Untuk menghitung total biaya sewa
 350000 * 3 + 200000 * 3
 1050000    + 600000
 1650000
@@ -522,7 +522,7 @@ Asisten: Nip: 4567
 Nama: Patrick Star
 
 
-PS C:\G\PraktikumPemrogramanBerbasisObjek> 
+PS C:\G\PraktikumPemrogramanBerbasisObjek>
 ```
 
 ## Pertanyaan Percobaan 3
@@ -758,7 +758,7 @@ PS C:\PENYIMPANAN\Documents\PraktikumPemrogramanBerbasisObjek>
 ```
 
 ```
-Object baru tersebut menimpa penumpang lama dan java tidak memberikan peringatan/error 
+Object baru tersebut menimpa penumpang lama dan java tidak memberikan peringatan/error
 ```
 
 5. Modifikasi program sehingga tidak diperkenankan menduduki kursi yang sudah ada penumpang lain (tambahkan pengecekan pada Gerbong.setPenumpang() sebelum baris arrayKursi[nomor - 1].setPenumpang(...) dijalankan).
@@ -925,7 +925,7 @@ Ketika objek mobil di-set null maka objek mesin tersebut tidak akan bisa diakses
 5. Coba (secara terpisah, boleh di file/package percobaan sendiri) tambahkan constructor kedua pada Mobil yang menerima parameter Mesin, mirip pola Percobaan 1: public Mobil(String merek, Mesin mesin) { this.merek = merek; this.mesin = mesin; }. Kalau constructor ini yang dipakai, apakah Mobil-Mesin berubah menjadi Aggregation? Jelaskan alasannya.
 
 ```
-Ketika ditambah constructor kedua pada mobil 
+Ketika ditambah constructor kedua pada mobil
     public Mobil(String merek, Mesin mesin) {
         this.merek = merek;
         this.mesin = mesin;
@@ -1056,4 +1056,211 @@ Composition     Part disimpan sebagai atribut           Objek itu sendiri yang m
 Dependency      Part tidak disimpan sebagai atribut     Objek hanya di berikan dari luar dan digunakan sementara
 ```
 
-## Tugas
+## Tugas mandiri:
+
+1. Rancang satu studi kasus sendiri (bebas topiknya, misalnya perpustakaan, klinik, toko online, dsb.), gambarkan diagram kelasnya, lalu implementasikan ke dalam program. Studi kasus wajib melibatkan minimal 4 class (class yang berisi main tidak dihitung) dan wajib mencakup ketiganya: minimal satu relasi Aggregation, satu Composition, dan satu Dependency. Tandai pada laporanmu, bagian mana dari kode yang merupakan masing-masing jenis relasi tersebut, dan sertakan alasannya.
+
+   ![Screenshot](Tugas/Tugas.png)
+
+### Class Kos
+
+```
+package jobsheet04.Tugas;
+
+public class Kos {
+    private String nama;
+    private Kamar [] arrayKamar;
+
+    public Kos(String nama, int jumlah) {
+        this.nama = nama;
+        this.arrayKamar = new Kamar[jumlah];
+        this.initKamar();
+    }
+
+    private void initKamar() {
+        for (int i = 0; i < arrayKamar.length; i++) {
+            arrayKamar[i] = new Kamar(String.valueOf(i + 1));
+        }
+    }
+
+    public void setPenghuni(Penghuni penghuni, int nomor) {
+        if (nomor < 1 || nomor > arrayKamar.length) {
+            System.out.println("Kamar tidak tersedia.");
+        } else if (arrayKamar[nomor - 1].getPenghuni() != null) {
+            System.out.println("Kamar sudah ada penghuni lain.\n");
+        } else {
+            arrayKamar[nomor - 1].setPenghuni(penghuni);
+        }
+    }
+
+    public String info() {
+        String info = "";
+        info += "Kos: " + nama + "\n";
+        for (Kamar kamar : arrayKamar) {
+            info += kamar.info();
+        }
+        return info;
+    }
+}
+
+```
+
+### Class Kamar
+
+```
+package jobsheet04.Tugas;
+
+public class Kamar {
+    private String nomor;
+    private Penghuni penghuni;
+
+    public Kamar(String nomor) {
+        this.nomor = nomor;
+    }
+
+    public void setPenghuni(Penghuni penghuni) {
+        this.penghuni = penghuni;
+    }
+
+    public Penghuni getPenghuni() {
+        return penghuni;
+    }
+
+    public String info() {
+        String info = "";
+        info += "Kamar " + nomor + " :\n";
+        if (this.penghuni != null) {
+            info += penghuni.info();
+        }
+        return info;
+    }
+}
+
+```
+
+### Class Penghuni
+
+```
+package jobsheet04.Tugas;
+
+public class Penghuni {
+    private String nama;
+    private String noHp;
+
+    public Penghuni(String nama, String noHp) {
+        this.nama = nama;
+        this.noHp = noHp;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public String getNoHp() {
+        return noHp;
+    }
+
+    public String info() {
+        String info = "";
+        info += "Nama: " + nama + "\n";
+        info += "No HP: " + noHp + "\n";
+        return info;
+    }
+}
+
+```
+
+### Class Pengelola
+
+```
+package jobsheet04.Tugas;
+
+public class Pengelola {
+    private String nama;
+
+    public Pengelola(String nama) {
+        this.nama = nama;
+    }
+
+    public void tagihSewa(Penghuni penghuni, int biaya) {
+        System.out.println("Pengelola " + nama + " menagih kepada " + penghuni.getNama() + " sebesar Rp" + biaya + ".\n");
+    }
+}
+
+```
+
+### Class MainKos
+
+```
+package jobsheet04.Tugas;
+
+public class MainKos {
+    public static void main(String[] args) {
+        Kos kos = new Kos("Kos A", 10);
+
+        Penghuni p1 = new Penghuni("Budi", "081234567890");
+        Penghuni p2 = new Penghuni("Alex", "089876543210");
+
+        kos.setPenghuni(p1, 1);
+        kos.setPenghuni(p2, 2);
+
+        System.out.println(kos.info());
+
+        Pengelola pengelola = new Pengelola("Achmad");
+
+        pengelola.tagihSewa(p1, 450000);
+        pengelola.tagihSewa(p2, 450000);
+    }
+}
+
+```
+
+### Hasil Run Terminal
+
+```
+PS C:\G\PraktikumPemrogramanBerbasisObjek>
+Kos: Kos A
+Kamar 1 :
+Nama: Budi
+No HP: 081234567890
+Kamar 2 :
+Nama: Alex
+No HP: 089876543210
+Kamar 3 :
+Kamar 4 :
+Kamar 5 :
+Kamar 6 :
+Kamar 7 :
+Kamar 8 :
+Kamar 9 :
+Kamar 10 :
+
+Pengelola Achmad menagih kepada Budi sebesar Rp450000.
+
+Pengelola Achmad menagih kepada Alex sebesar Rp450000.
+
+PS C:\G\PraktikumPemrogramanBerbasisObjek>
+```
+
+## Relasi Aggregation, Composition, dan Dependency
+
+### Aggregation
+```
+Objek Penghuni dibuat di Main, lalu dimasukkan ke Kamar lewat method
+public void setPenghuni(Penghuni penghuni)
+```
+### Composition
+```
+Objek Kamar di-new langsung di dalam class Kos
+this.arrayKamar = new Kamar[jumlah];
+```
+### Dependency
+```
+Objek Penghuni hanya muncul sebagai parameter di dalam method
+public void tagihSewa(Penghuni penghuni, int biaya)
+```
+
+2. Jawab singkat (3-5 kalimat): dalam merancang sistem barumu sendiri, bagaimana kita memutuskan sebuah relasi antar class seharusnya Aggregation, Composition, atau Dependency? Sebutkan pertanyaan kunci yang kita ajukan ke diri sendiri saat memutuskan.
+```
+Untuk memutuskan sebuah relasi class, terdapat pertanyaan apakah objek A di simpan sebagai atribut di B, dan jika ya, siapa yang memanggil new untuk membuat objek part tersebut? Kalau A tidak disimpan sebagai atribut di B, melainkan hanya sebagai parameter method maka relasinya Dependency. Kalau A disimpan sebagai atribut tetapi pembuatan objeknya di luar B lalu diserahkan lewat constructor atau setter, maka relasinya Aggregation. Kalau A disimpan sebagai atribut dan B yang memanggil new untuk membuatnya di dalam constructor, maka relasinya Composition.
+```
