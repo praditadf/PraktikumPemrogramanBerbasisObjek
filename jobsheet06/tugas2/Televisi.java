@@ -3,7 +3,7 @@ package jobsheet06.tugas2;
 public class Televisi {
     public String merek;
     public int jumlahChannel;
-    private int channelAktif;
+    private int channelAktif = 1;
 
     public Televisi(String merek, int jumlahChannel) {
         this.merek = merek;

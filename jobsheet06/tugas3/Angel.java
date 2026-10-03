@@ -9,7 +9,7 @@ public class Angel extends Character {
     }
 
     public void cure(Character target){
-        target.health += 100;
+        target.health = 100;
         this.potion -= 1;
     }
 }

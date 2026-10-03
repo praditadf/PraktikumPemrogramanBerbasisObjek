@@ -21,7 +21,7 @@ public class DaftarGaji {
     public void printSemuaGaji() {
         for (int i = 0; i < jumlah; i++) {
             Pegawai p = listPegawai[i];
-            System.out.println("Nama: " + p.getNama() + " : " + p.getGaji());
+            System.out.println(p.getNama() + " : " + p.getGaji());
         }
     }
 }
