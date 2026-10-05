@@ -352,10 +352,9 @@ public class ClassA {
 ```
 package jobsheet06.percobaan4;
 
-public class ClassC extends ClassB {
-    ClassC() {
-        System.out.println("konstruktor C dijalankan");
-        super();
+public class ClassB extends ClassA {
+    ClassB() {
+        System.out.println("konstruktor B dijalankan");
     }
 }
 ```
@@ -365,9 +364,10 @@ public class ClassC extends ClassB {
 ```
 package jobsheet06.percobaan4;
 
-public class ClassB extends ClassA {
-    ClassB() {
-        System.out.println("konstruktor B dijalankan");
+public class ClassC extends ClassB {
+    ClassC() {
+        System.out.println("konstruktor C dijalankan");
+        super();
     }
 }
 ```
@@ -389,7 +389,9 @@ public class MainPercobaan4 {
 1. Sebutkan class yang berperan sebagai superclass dan subclass pada percobaan ini beserta alasannya. Mengapa ClassB disebut berperan ganda?
 
 ```
-
+ClassA : Berperan sebagai superclass
+ClassB : Berperan sebagai superclass dan subclass dari ClassA, karena mewarisi ClassA dan juga diwarisi oleb ClassC
+ClassC ; Berperan sebagai sublass
 ```
 
 2. Program hanya membuat satu objek (new ClassC()), tetapi tiga baris tercetak. Jelaskan mengapa konstruktor ClassA dan ClassB ikut dijalankan.
