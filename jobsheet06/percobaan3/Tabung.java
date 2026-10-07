@@ -18,7 +18,7 @@ public class Tabung extends Bangun {
 
     public void volume() {
         System.out.println("Volume Tabung adalah: "
-            + (this.phi * super.r * super.r * this.t));      
+            + (super.phi * super.r * super.r * this.t));      
     }
 
     public void cekR() {
