@@ -77,7 +77,7 @@ PS C:\G\PraktikumPemrogramanBerbasisObjek>
 
 1. Mengapa kompilasi pada Langkah 5 gagal? Tuliskan pesan error pertama beserta file dan baris tempat error muncul.
 
-Karena ClassA tidak diwariskan ke ClassB
+ Karena ClassB tidak punya atribut x dan y
 ![Error 1](img/1.png)
 
 2. Baris kode mana yang diubah pada Langkah 6, dan apa artinya? Sebutkan class yang berperan sebagai superclass dan subclass.
@@ -184,6 +184,9 @@ PS C:\G\PraktikumPemrogramanBerbasisObjek>
 
 1. Di file dan baris mana error pada Langkah 5 muncul, dan apa pesannya? Mengapa error tidak muncul di MainPercobaan2?
    ![Error 2](/jobsheet06/img/2.png)
+   ```
+   Error muncul di bagian method getJumlah(). Error tidak muncul di MainPercobaan2 karena MainPercobaan2 mengakses nilai tersebut melalui method setX(), setY(), getX(), dan getY() yang memiliki hak akses public.
+   ```
 2. Jelaskan penyebab error tersebut dengan merujuk pada tabel kontrol pengaksesan (Langkah 1).
 
 ```
@@ -193,7 +196,7 @@ Error disebabkan karena atribut x dan y dideklarasikan private sehingga tidak bi
 3. Pada kode awal, MainPercobaan2 memanggil hitung.setX(20) dan tidak error, padahal x bersifat private. Mengapa pemanggilan ini diperbolehkan, dan di mana nilai x tersimpan?
 
 ```
-Karena object hitung memasukkan nilai dengan memanggil method setX yang memiliki akses public, walaupun atribut x bersifat private, nilai itu kemudian disimpan pada atribut private x yang dimiliki oleh object tersebut
+Karena object hitung memasukkan nilai dengan memanggil method setX yang memiliki hak akses public, walaupun atribut x bersifat private, nilai itu kemudian disimpan pada atribut private x yang dimiliki oleh object tersebut
 ```
 
 4. Bandingkan Perbaikan A (protected) dan Perbaikan B (private + getter) dari sisi encapsulation. Mana yang Anda pilih untuk program sungguhan? Jelaskan alasannya.
@@ -306,31 +309,32 @@ PS C:\G\PraktikumPemrogramanBerbasisObjek>
 1. Jelaskan fungsi super pada super.phi = phi; dan super.r = r; di method setSuperPhi() dan setSuperR() milik Tabung.
 
 ```
-
+super.phi = phi mengakses phi dai superclass 
+super.r = r untuk mengakses r dari variabel superclass
 ```
 
 2. Jelaskan fungsi super dan this pada ekspresi super.phi _ super.r _ super.r \* this.t di method volume().
 
 ```
-
+super.phi merujuk pada atribut phi milik superclass Bangun, sedangkan super.r merujuk pada atribut r milik Bangun. Sementara itu, this.t merujuk pada atribut t milik objek Tabung
 ```
 
 3. Mengapa Tabung tidak mendeklarasikan atribut phi dan r, tetapi tetap dapat mengaksesnya? Apa yang terjadi bila pada Bangun keduanya diubah menjadi private?
 
 ```
-
+Karena Tabung adalah subclass dari Bangun yang memiliki artribut phi dan r dengan hak akses protectted, sehingga class Tabung tetap dapat mengaksesnya walaupun tidak mendeklarasikan atribut tersebut. Namun jika diubah menjadi private maka class Tabung tidak lagi dapat mengakses atribut tersebut
 ```
 
 4. Pada Eksperimen 1, apakah output berubah ketika super.phi diganti this.phi? Jelaskan mengapa.
 
 ```
-
+Output tidak berubah ketika super.phi diganti menjadi this.phi, karena Tabung tidak mendeklarasikan atribut phi sendiri, sehingga this.pi tetap merujuk kepada atribut di class Bangun
 ```
 
 5. Pada Eksperimen 2, mengapa r, this.r, dan super.r menghasilkan nilai yang berbeda? Pada kondisi apa awalan super. menjadi wajib dipakai?
 
 ```
-
+r mengacu pada r milik Tabung, sehingga nilainya 5. Sedangkan super.r mengacu pada atribut r milik superclass Bangun, sehingga nilainya 10. Awalan super digunakan ketika ingin secara eksplisit mengakses superclass yang memiliki nama sama dengan subclass.
 ```
 
 ## Percobaan 4
@@ -397,25 +401,30 @@ ClassC ; Berperan sebagai sublass
 2. Program hanya membuat satu objek (new ClassC()), tetapi tiga baris tercetak. Jelaskan mengapa konstruktor ClassA dan ClassB ikut dijalankan.
 
 ```
-
+Karena objek yang dibuat adalah objek dari ClassC yang menjadi subclass dari CLassB, dan ClassB menjadi subclass dari ClassA, sehingga konstruktor CLassA dan ClassB ikut dijalankan
 ```
 
 3. Pada Modifikasi 1, mengapa output tidak berbeda dari sebelumnya meskipun super(); ditambahkan secara eksplisit?
 
 ```
-
+Karena pada modifikasi 1 hanya menambahkan super() pada baris pertama konstruktor, karena pada program java otomatis terdapat pemanggilan super() pada baris pertama walaupun tidak ditambahkan secara eksplisit di dalam konstruktor barus pertama.
 ```
 
 4. Pada Modifikasi 2 terjadi error. Aturan apa yang dilanggar, dan mengapa Java menetapkan aturan tersebut?
 
 ```
-
+Error terjadi karena super(); harus dijadikan baris pertama di dalam konstruktor. Java menetapkan aturan ini agar proses inisialisasi superclass dilakukan terlebih dahulu sebelum bagian konstruktor subclass dijalankan.
 ```
 
 5. Tuliskan urutan proses (bernomor) yang terjadi ketika new ClassC() dieksekusi, dimulai dari pemanggilan konstruktor ClassC hingga seluruh output tercetak.
 
 ```
-
+1. new ClassC() memanggil konstruktor ClassC()
+2. Konstruktor ClassC memanggil super(), sehingga konstruktor ClassB dijalankan.
+3. Sebelum menjalankan isi konstruktor ClassB, Java memanggil super(), sehingga konstruktor ClassA dijallankan.
+4. Konstruktor ClassA mencetak "konstruktor A dijalankan".
+5. Konstruktor ClassB mencetak "konstruktor B dijalankan".
+5. Konstruktor ClassC mencetak "konstruktor C dijalankan".
 ```
 
 ## Percobaan 5
@@ -512,26 +521,23 @@ public class MainPercobaan5 {
 
 ## Pertanyaan Percobaan 5
 
-```
-
-```
-
 1. Jelaskan fungsi super(merk, memory, cpu) pada konstruktor Desktop. Atribut apa saja yang diisi oleh baris tersebut, dan atribut apa yang diisi oleh baris berikutnya?
 
 ```
-
+Fungsi super(merk, memory, cpu) pada konstruktor Desktop adalan untuk memanggil konstruktor dari superclass dengan merk, memory, cpu sebagai parameter dari pemanggilan konstruktor berparameter milik Class Komputer. Kemudian this.printer = printer digunakan untuk mengisi atribut printer yang khusus dimiliki oleh class Desktop.
 ```
 
 2. Pada Eksperimen 1, mengapa error muncul di sini, padahal pada Percobaan 4 super() juga tidak ditulis tetapi program tetap berjalan?
 
 ```
 Implicit super constructor Komputer() is undefined. Must explicitly invoke another constructor
+Karena konstruktor dekstop mencoba memanggil super(), tetapi konstruktor tersebut tidak tersedia pada class Komputer.
 ```
 
 3. Method showInfo() ditulis di Komputer sekaligus di Desktop. Apa istilah untuk kondisi ini? Apa yang tercetak bila baris super.showInfo(); pada Desktop dihapus?
 
 ```
-
+Kondisi tersebut disebut method overriding, yaitu subclass memiliki method showInfo() yang sudah dimiliki superclass. Jika super.showInfo(); dihapus, informasi merk, kapasitasMemory, dan kecepatanCPU dari Komputer tidak akan dicetak dan output Desktop hanya menampilkan informasi printer.
 ```
 
 4. Pada Eksperimen 2, jelaskan perbedaan hasil kompilasi dengan dan tanpa @Override. Apa manfaat menuliskan @Override?
@@ -564,6 +570,9 @@ Resolusi Layar  : 720
 
 Komputer Dell dinyalakan
 PS C:\G\PraktikumPemrogramanBerbasisObjek>
+```
+```
+Dengan atau tanpa @Override, program akan tetap dapat dijalankan dan menghasilkan output yang sama selama method pada subclass benar-benar melakukan overriding terhadap method superclass. @Override berfungsi memberi tahu compiler bahwa method tersebut dimaksudkan untuk menimpa method superclass.
 ```
 
 5. Tantangan. Buat class Workstation sebagai turunan Desktop dengan atribut gpu (String). Class ini harus menimpa showInfo() sehingga menampilkan seluruh informasi Desktop ditambah baris GPU. Ketika new Workstation(...) dibuat, konstruktor class apa saja yang terpanggil, dan dalam urutan apa?
@@ -606,6 +615,10 @@ Kapasitas Memory: 2048 MB
 Kecepatan CPU   : 3500 MHz
 Printer         : Canon
 Gpu             : RTX
+```
+
+```
+Ketika new Workstation(...) dibuat, konstruktor dipanggil adalah konstruktor Workstation kemudian Dekstop dan Komputer. Konstruktor Workstation memanggil super(...) untuk menjalankan konstruktor Desktop, kemudian Desktop memanggil super(...) untuk menjalankan konstruktor Komputer.
 ```
 
 ## Tugas 1
@@ -725,13 +738,13 @@ PS C:\G\PraktikumPemrogramanBerbasisObjek>
 - (a.)Array Pegawai[] dapat menampung objek Dosen. Mengapa hal itu diperbolehkan?
 
 ```
-Hal itu diperbolehkan karena Class Dosen mewarisi Pegawai sehingga arra dari Pegawai bisa digunakan untuk menyimpan object dari subclass(Dosen) 
+Hal itu diperbolehkan karena Class Dosen merupakan subclass Pegawai sehingga array dari Pegawai bisa digunakan untuk menyimpan object dari subclass(Dosen) 
 ```
 
 - (b) Ketika printSemuaGaji() memanggil getGaji() pada objek Dosen, versi method milik class mana yang dijalankan?
 
 ```
-Karena yang digunakan adalah objek Dosen sehingga method milic class Dosen lah yang dijalankan karena method tersebut menimpa method getGaji() milik class Pegawai.
+Karena yang digunakan adalah objek Dosen sehingga method milik class Dosen lah yang dijalankan karena method tersebut menimpa method getGaji() milik class Pegawai.
 ```
 
 ## Tugas 2
@@ -977,11 +990,11 @@ PS C:\G\PraktikumPemrogramanBerbasisObjek>
 1. Jelaskan dengan bahasa Anda sendiri perbedaan hubungan is-a (inheritance) dan has-a (aggregation/composition), lalu beri satu contoh masing-masing dari jobsheet ini.
 
 ```
-
+is-a menunjukkan hubungan pewarisan, yaitu suatu class merupakan jenis dari class lain. Contohnya, Dosen is-a Pegawai karena Dosen extends Pegawai. has-a menunjukkan hubungan kepemilikan atau memiliki objek lain sebagai bagian dari suatu class. Contohnya pada DaftarGaji, class tersebut has-a Pegawai[] karena memiliki array yang digunakan untuk menyimpan objek-objek Pegawai.
 ```
 
 2. Ringkas aturan pewarisan untuk tiga hal berikut dalam 3–5 kalimat: member private, member protected, dan konstruktor.
 
 ```
-
+Member private hanya dapat diakses langsung dari classnya sendiri dan tidak dapat diakses langsung oleh subclass. Member protected dapat diakses oleh class itu sendiri dan subclassnya, termasuk subclass yang berada di package yang berbeda. Konstruktor tidak diwariskan oleh subclass, tetapi ketika objek subclass dibuat, konstruktor superclass tetap dipanggil terlebih dahulu melalui super() atau super(parameter).
 ```
