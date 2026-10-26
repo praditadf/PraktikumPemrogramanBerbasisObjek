@@ -13,8 +13,8 @@ public class MainPercobaan1 {
         e = iEmp;
         System.out.println("e menunjuk objek " + e.getClass().getSimpleName());
         p = pEmp;
-        System.out.println("e menunjuk objek " + e.getClass().getSimpleName());
+        System.out.println("e menunjuk objek " + p.getClass().getSimpleName());
         p = eBill;
-        System.out.println("e menunjuk objek " + e.getClass().getSimpleName());
+        System.out.println("e menunjuk objek " + p.getClass().getSimpleName());
     }
 }
