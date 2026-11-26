@@ -3,6 +3,7 @@ package backend;
 import java.util.ArrayList;
 
 public class Kategori {
+
     private static final ArrayList<Kategori> DATA = new ArrayList<>();
     private static int nextId = 1;
 
@@ -110,5 +111,10 @@ public class Kategori {
 
     public void delete() {
         DATA.removeIf(k -> k.idkategori == idkategori);
+    }
+
+    @Override
+    public String toString() {
+        return nama;
     }
 }
